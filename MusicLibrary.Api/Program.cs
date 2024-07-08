@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using MusicLibrary.DataAccess.Interfaces;
 using MusicLibrary.DataAccess.Models;
+using MusicLibrary.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,10 @@ builder.Services.AddDbContext<MusicLibraryContext>(options =>
 {
     options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=MusicLibrary;Trusted_Connection=True;TrustServerCertificate=True;");
 });
+
+builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
+builder.Services.AddScoped<ISongRepository, SongRepository>();
 
 var app = builder.Build();
 
