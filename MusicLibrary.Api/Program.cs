@@ -1,39 +1,21 @@
+using API;
 using Microsoft.EntityFrameworkCore;
 using MusicLibrary.DataAccess.Interfaces;
 using MusicLibrary.DataAccess.Models;
 using MusicLibrary.DataAccess.Repository;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<MusicLibraryContext>(options =>
+internal class Program
 {
-    options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=MusicLibrary;Trusted_Connection=True;TrustServerCertificate=True;");
-});
+    private static void Main(string[] args)
+    {
 
-builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
-builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
-builder.Services.AddScoped<ISongRepository, SongRepository>();
+        CreateHostBuilder(args).Build().Run();
+    }
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
