@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicLibrary.DataAccess.Models;
 
@@ -10,9 +11,11 @@ using MusicLibrary.DataAccess.Models;
 namespace MusicLibrary.DataAccess.Migrations
 {
     [DbContext(typeof(MusicLibraryContext))]
-    partial class MusicLibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240709111006_UpdateFkTypes")]
+    partial class UpdateFkTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

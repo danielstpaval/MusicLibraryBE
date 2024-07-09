@@ -2,7 +2,7 @@
 
 namespace MusicLibrary.DataAccess.Models
 {
-    public class BaseModel
+    public class BaseEntity
     {
         [Key]
         public int Id { get; set; }
