@@ -26,7 +26,7 @@ namespace API
             });
             services.AddDbContext<MusicLibraryContext>(options =>
             {
-                options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=MusicLibrary;Trusted_Connection=True;TrustServerCertificate=True;");
+                options.UseSqlServer(Configuration.GetConnectionString("MusicLibrary"));
             });
             services.AddScoped<IArtistRepository, ArtistRepository>();
             services.AddScoped<IAlbumRepository, AlbumRepository>();
